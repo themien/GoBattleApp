@@ -1,7 +1,7 @@
 
 import mysql.connector
 
-class DBManagerClass:
+class DBManager:
     def __init__(self, database='PoGoBattles', host="db", user="root", password="password"):
         self.connection = mysql.connector.connect(
             user=user, 
@@ -13,8 +13,6 @@ class DBManagerClass:
         self.cursor = self.connection.cursor()
     
     def populate_db(self):
-        self.cursor.execute('DROP TABLE IF EXISTS blog')
-        self.cursor.execute('CREATE TABLE blog (id INT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(255))')
         self.cursor.executemany('INSERT INTO blog (id, title) VALUES (%s, %s);', [(i, 'Blog post #%d'% i) for i in range (1,5)])
         self.connection.commit()
     
@@ -22,5 +20,10 @@ class DBManagerClass:
         self.cursor.execute('SELECT * FROM Battle')
         rec = []
         for c in self.cursor:
-            rec.append(c[0])
+            rec.append(c[2])
         return rec
+
+
+class Battle:
+    def __init__(self):
+        pass
