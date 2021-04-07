@@ -1,5 +1,6 @@
 
 import mysql.connector
+from datetime import date, datetime, time, timedelta
 
 class DBManager:
     def __init__(self, database='PoGoBattles', host="db", user="root", password="password"):
@@ -12,10 +13,31 @@ class DBManager:
         )
         self.cursor = self.connection.cursor()
     
-    def populate_db(self):
-        self.cursor.executemany('INSERT INTO blog (id, title) VALUES (%s, %s);', [(i, 'Blog post #%d'% i) for i in range (1,5)])
-        self.connection.commit()
-    
+
+    def add_battle(self):
+        tomorrow = datetime.now().date() + timedelta(days=1)
+        add_battle = ("INSERT INTO Battle"
+                      "(battleId, season, league, battleDate, battleTime,"
+                      "myPokemon1, myPokemon2, myPokemon3, opponentName,"
+                      "opponentPokemon1, opponentPokemon2, opponentPokemon3,"
+                      "isWon, ifLostWasBadPlayed)"
+                      "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)")
+        
+        data_battle = (2, 7, 'Great', date(1977, 6, 14), time(14,32,5), 'Talo', 'Mew', 'Machamp', 'oppo2', 'Celebi', 'Mantine', 'Pelipper', False, True)
+        
+        # Insert new employee
+        self.cursor.execute(add_battle, data_battle)
+        # emp_no = cursor.lastrowid
+        
+        # # Insert salary information
+        # data_salary = {
+        #   'emp_no': emp_no,
+        #   'salary': 50000,
+        #   'from_date': tomorrow,
+        #   'to_date': date(9999, 1, 1),
+        # }
+        # self.cursor.execute(add_salary, data_salary)
+            
     def query_battles(self):
         self.cursor.execute('SELECT * FROM Battle')
         rec = []

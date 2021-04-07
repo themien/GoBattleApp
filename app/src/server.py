@@ -7,8 +7,8 @@ import models
 @server.route("/")
 def hello():
     conn = models.DBManager()
+    conn.add_battle()
     rec = conn.query_battles()
-
     result = []
     for c in rec:
         result.append(c)
