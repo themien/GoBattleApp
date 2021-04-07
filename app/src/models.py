@@ -1,11 +1,7 @@
-import os
-import flask
-from flask import Flask
-server = Flask(__name__)
 
 import mysql.connector
 
-class DBManager:
+class DBManagerClass:
     def __init__(self, database='PoGoBattles', host="db", user="root", password="password"):
         self.connection = mysql.connector.connect(
             user=user, 
@@ -26,21 +22,5 @@ class DBManager:
         self.cursor.execute('SELECT * FROM Battle')
         rec = []
         for c in self.cursor:
-            rec.append(c[2])
+            rec.append(c[0])
         return rec
-
-@server.route("/")
-def hello():
-    conn = DBManager()
-    rec = conn.query_battles()
-
-    result = []
-    for c in rec:
-        result.append(c)
-
-    return flask.jsonify({"response": result})
-
-if __name__ == "__main__":
-    # remove debug=True when deployed
-    server.run(debug=True, host='0.0.0.0')
-
