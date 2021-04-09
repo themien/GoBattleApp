@@ -2,7 +2,7 @@ CREATE DATABASE IF NOT EXISTS PoGoBattles;
 USE PoGoBattles;
 
 CREATE TABLE  IF NOT EXISTS Battle (
-    battleId           INTEGER(8),
+    battleId           INTEGER(8),-- AUTO_INCREMENT,
     season             INTEGER(4),
     league             VARCHAR(20),
     battleDate         DATE,
