@@ -47,5 +47,21 @@ class DBManager:
 
 
 class Battle:
-    def __init__(self):
-        pass
+    def __init__(self, battleId, season, league, battleDate, battleTime, 
+                 myPokemon1, myPokemon2, myPokemon3, opponentName, 
+                 opponentPokemon1, opponentPokemon2, opponentPokemon3,
+                 isWon, ifLostWasBadPlayed):
+        self.battleId = battleId
+        self.season = season
+        self.league = league
+        self.battleDate = battleDate
+        self.battleTime = battleTime
+        self.myPokemon1 = myPokemon1
+        self.myPokemon2 = myPokemon2
+        self.myPokemon3 = myPokemon3
+        self.opponentName = opponentName
+        self.opponentPokemon1 = opponentPokemon1
+        self.opponentPokemon2 = opponentPokemon2
+        self.opponentPokemon3 = opponentPokemon3
+        self.isWon = isWon
+        self.ifLostWasBadPlayed = ifLostWasBadPlayed
