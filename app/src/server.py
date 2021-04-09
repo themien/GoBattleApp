@@ -1,7 +1,12 @@
+
 import flask
 from flask import Flask, render_template
-server = Flask(__name__)
+from config import Config
 
+server = Flask(__name__)
+server.config.from_object(Config)
+
+# local modules
 import models
 import forms
 
@@ -13,11 +18,11 @@ def index():
     return render_template('base.html', title='Home', user=user)  
 
 
-# @server.route("/form")
-# def form():
-#     user = {'username': 'Themien'}
-#     form = form.TestForm()
-#     return render_template('form.html', title='Home', user=user, form=form)  
+@server.route("/form")
+def form():
+    user = {'username': 'Themien'}
+    form = forms.TestForm()
+    return render_template('form.html', title='Home', user=user, form=form)  
 
 
 @server.route("/test_query")
