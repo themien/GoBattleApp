@@ -1,18 +1,55 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Sign In</h1>
+    <h1>Add Battle</h1>
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
         <p>
-            {{ form.username.label }}<br>
-            {{ form.username(size=32) }}
+            {{ form.season.label }}<br>
+            {{ form.season(size=32) }}
         </p>
         <p>
-            {{ form.password.label }}<br>
-            {{ form.password(size=32) }}
+            {{ form.league.label }}<br>
+            {{ form.league(size=32) }}
         </p>
-        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+        <p>
+            {{ form.battle_date.label }}<br>
+            {{ form.battle_date() }}
+        </p>
+        <p>
+            {{ form.battle_time.label }}<br>
+            {{ form.battle_time() }}
+        </p>
+        <p>
+            {{ form.my_pokemon_1.label }}<br>
+            {{ form.my_pokemon_1(size=32) }}
+        </p>
+        <p>
+            {{ form.my_Pokemon_2.label }}<br>
+            {{ form.my_Pokemon_2(size=32) }}
+        </p>
+        <p>
+            {{ form.my_pokemon_3.label }}<br>
+            {{ form.my_pokemon_3(size=32) }}
+        </p>
+        <p>
+            {{ form.opponent_name.label }}<br>
+            {{ form.opponent_name(size=32) }}
+        </p>
+        <p>
+            {{ form.opponent_pokemon_1.label }}<br>
+            {{ form.opponent_pokemon_1(size=32) }}
+        </p>
+        <p>
+            {{ form.opponent_pokemon_2.label }}<br>
+            {{ form.opponent_pokemon_2(size=32) }}
+        </p>
+        <p>
+            {{ form.opponent_pokemon_3.label }}<br>
+            {{ form.opponent_pokemon_3(size=32) }}
+        </p>
+        <p>{{ form.is_won() }} {{ form.is_won.label }}</p>
+        <p>{{ form.if_lost_was_badly_played() }} {{ form.if_lost_was_badly_played.label }}</p>
         <p>{{ form.submit() }}</p>
     </form>
 {% endblock %}

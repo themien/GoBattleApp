@@ -1,9 +1,19 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, BooleanField, SubmitField, DateField, TimeField
 from wtforms.validators import DataRequired
 
-class TestForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    remember_me = BooleanField('Remember Me')
-    submit = SubmitField('Sign In')
+class BattleForm(FlaskForm):
+    season = StringField('Season')
+    league = StringField('League')
+    battle_date = DateField('Date')
+    battle_time = TimeField('Time')
+    my_pokemon_1 = StringField('My First Pokemon')
+    my_Pokemon_2 = StringField('My Second Pokemon')
+    my_pokemon_3 = StringField('My Third Pokemon')
+    opponent_name = StringField('Opponent', validators=[DataRequired()])
+    opponent_pokemon_1 = StringField('Opponent First Pokemon', validators=[DataRequired()])
+    opponent_pokemon_2 = StringField('Opponent Second Pokemon', validators=[DataRequired()])
+    opponent_pokemon_3 = StringField('Opponent Third Pokemon', validators=[DataRequired()])
+    is_won = BooleanField('Battle won?')
+    if_lost_was_badly_played = BooleanField('If lost was it badly played?')   
+    submit = SubmitField('Add')

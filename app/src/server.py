@@ -21,7 +21,7 @@ def index():
 @server.route("/form")
 def form():
     user = {'username': 'Themien'}
-    form = forms.TestForm()
+    form = forms.BattleForm()
     return render_template('form.html', title='Home', user=user, form=form)  
 
 
