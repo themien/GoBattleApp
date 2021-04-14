@@ -5,6 +5,7 @@ CREATE TABLE  IF NOT EXISTS Battle (
     battleId           INTEGER(8),-- AUTO_INCREMENT,
     season             INTEGER(4),
     league             VARCHAR(20),
+    elo                INTEGER(5),
     battleDate         DATE,
     battleTime         TIME,
     myPokemon1         VARCHAR(20),
@@ -20,13 +21,13 @@ CREATE TABLE  IF NOT EXISTS Battle (
 );
 
 INSERT INTO Battle
-  (battleId, season, league, battleDate, battleTime, 
+  (battleId, season, league, elo, battleDate, battleTime, 
    myPokemon1, myPokemon2, myPokemon3, opponentName,
    opponentPokemon1, opponentPokemon2, opponentPokemon3,
    isWon, ifLostWasBadPlayed
   )
 VALUES
-  (1, 7, 'Great', '2020-04-28', '14:34:55', 
+  (1, 7, 'Great', 2600, '2020-04-28', '14:34:55', 
    'Talonflame', 'Mew', 'Machamp (Shadow)', 'RandomOpp',
    'Azumarill', 'Altaria', 'Sableye', 
     True, NULL

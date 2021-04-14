@@ -9,7 +9,7 @@ class BattleForm(FlaskForm):
     battle_date = DateField('Date')
     battle_time = TimeField('Time')
     my_pokemon_1 = StringField('My First Pokemon')
-    my_Pokemon_2 = StringField('My Second Pokemon')
+    my_pokemon_2 = StringField('My Second Pokemon')
     my_pokemon_3 = StringField('My Third Pokemon')
     opponent_name = StringField('Opponent', validators=[DataRequired()])
     opponent_pokemon_1 = StringField('Opponent First Pokemon', validators=[DataRequired()])

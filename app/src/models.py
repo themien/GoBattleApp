@@ -17,43 +17,37 @@ class DBManager:
     def add_battle(self):
         tomorrow = datetime.now().date() + timedelta(days=1)
         add_battle = ("INSERT INTO Battle"
-                      "(battleId, season, league, battleDate, battleTime,"
+                      "(battleId, season, league, elo, battleDate, battleTime,"
                       "myPokemon1, myPokemon2, myPokemon3, opponentName,"
                       "opponentPokemon1, opponentPokemon2, opponentPokemon3,"
                       "isWon, ifLostWasBadPlayed)"
-                      "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)")
+                      "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)")
         
-        data_battle = (2, 7, 'Great', date(1977, 6, 14), time(14,32,5), 'Talo', 'Mew', 'Machamp', 'oppo2', 'Celebi', 'Mantine', 'Pelipper', False, True)
-        
-        # Insert new employee
+        data_battle = (2, 7, 'Great', 2348, date(1977, 6, 14), time(14,32,5), 'Talo', 'Mew', 'Machamp', 'oppo2', 'Celebi', 'Mantine', 'Pelipper', False, True)
         self.cursor.execute(add_battle, data_battle)
-        # emp_no = cursor.lastrowid
-        
-        # # Insert salary information
-        # data_salary = {
-        #   'emp_no': emp_no,
-        #   'salary': 50000,
-        #   'from_date': tomorrow,
-        #   'to_date': date(9999, 1, 1),
-        # }
-        # self.cursor.execute(add_salary, data_salary)
+
+
             
     def query_battles(self):
         self.cursor.execute('SELECT * FROM Battle')
         rec = []
         for c in self.cursor:
+            # for i in range(14):
+            #     rec.append(c[i])
             rec.append(c[2])
         return rec
 
 
+
 class Battle:
-    def __init__(self, battleId, season, league, battleDate, battleTime, 
+    def __init__(self, battleId, season, league, elo, battleDate, battleTime, 
                  myPokemon1, myPokemon2, myPokemon3, opponentName, 
                  opponentPokemon1, opponentPokemon2, opponentPokemon3,
                  isWon, ifLostWasBadPlayed):
         self.battleId = battleId
         self.season = season
         self.league = league
+        self.elo = elo
         self.battleDate = battleDate
         self.battleTime = battleTime
         self.myPokemon1 = myPokemon1

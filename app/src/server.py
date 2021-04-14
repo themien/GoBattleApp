@@ -1,6 +1,6 @@
 
 import flask
-from flask import Flask, render_template
+from flask import Flask, render_template, flash, redirect
 from config import Config
 
 server = Flask(__name__)
@@ -9,6 +9,9 @@ server.config.from_object(Config)
 # local modules
 import models
 import forms
+import controllers
+
+battle_controller = controllers.BattleController()
 
 @server.route("/")
 @server.route("/index")
@@ -18,18 +21,21 @@ def index():
     return render_template('base.html', title='Home', user=user)  
 
 
-@server.route("/form")
-def form():
+@server.route("/battle/add", methods=['GET', 'POST'])
+def battle_add():
     user = {'username': 'Themien'}
     form = forms.BattleForm()
-    return render_template('form.html', title='Home', user=user, form=form)  
+    if form.validate_on_submit():
+        # Add the battle here
+        battle_controller.add_battle(form)
+        return redirect('/test_query')
+    return render_template('form.html', title='Add battle', user=user, form=form)  
 
 
 @server.route("/test_query")
 def query_db():
-    conn = models.DBManager()
-    conn.add_battle()
-    rec = conn.query_battles()
+    battle_controller.conn.add_battle()
+    rec = battle_controller.conn.query_battles()
     result = []
     for c in rec:
         result.append(c)
