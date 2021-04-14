@@ -1,10 +1,11 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, BooleanField, SubmitField, DateField, TimeField
+from wtforms import StringField, BooleanField, SubmitField, DateField, TimeField, IntegerField
 from wtforms.validators import DataRequired
 
 class BattleForm(FlaskForm):
-    season = StringField('Season')
+    season = IntegerField('Season')
     league = StringField('League')
+    elo = IntegerField('Elo')
     battle_date = DateField('Date')
     battle_time = TimeField('Time')
     my_pokemon_1 = StringField('My First Pokemon')

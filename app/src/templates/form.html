@@ -6,11 +6,15 @@
         {{ form.hidden_tag() }}
         <p>
             {{ form.season.label }}<br>
-            {{ form.season(size=32) }}
+            {{ form.season() }}
         </p>
         <p>
             {{ form.league.label }}<br>
             {{ form.league(size=32) }}
+        </p>
+        <p>
+            {{ form.elo.label }}<br>
+            {{ form.elo() }}
         </p>
         <p>
             {{ form.battle_date.label }}<br>
