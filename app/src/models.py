@@ -1,6 +1,6 @@
 
 import mysql.connector
-from datetime import date, datetime, time, timedelta
+
 
 class DBManager:
     def __init__(self, database='PoGoBattles', host="db", user="root", password="password"):
@@ -14,17 +14,33 @@ class DBManager:
         self.cursor = self.connection.cursor()
     
 
-    def add_battle(self):
-        tomorrow = datetime.now().date() + timedelta(days=1)
-        add_battle = ("INSERT INTO Battle"
+    def add_battle(self, battle):
+        
+        add_query = ("INSERT INTO Battle"
                       "(battleId, season, league, elo, battleDate, battleTime,"
                       "myPokemon1, myPokemon2, myPokemon3, opponentName,"
                       "opponentPokemon1, opponentPokemon2, opponentPokemon3,"
                       "isWon, ifLostWasBadPlayed)"
                       "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)")
         
-        data_battle = (2, 7, 'Great', 2348, date(1977, 6, 14), time(14,32,5), 'Talo', 'Mew', 'Machamp', 'oppo2', 'Celebi', 'Mantine', 'Pelipper', False, True)
-        self.cursor.execute(add_battle, data_battle)
+        data_battle = (battle.battleId, 
+                       battle.season,
+                       battle.league,
+                       battle.elo,
+                       battle.battleDate,
+                       battle.battleTime,
+                       battle.myPokemon1,
+                       battle.myPokemon2,
+                       battle.myPokemon3,
+                       battle.opponentName,
+                       battle.opponentPokemon1,
+                       battle.opponentPokemon2,
+                       battle.opponentPokemon3,
+                       battle.isWon,
+                       battle.ifLostWasBadPlayed)
+
+        # data_battle = (2, 7, 'Great', 2348, date(1977, 6, 14), time(14,32,5), 'Talo', 'Mew', 'Machamp', 'oppo2', 'Celebi', 'Mantine', 'Pelipper', False, True)
+        self.cursor.execute(add_query, data_battle)
 
 
             

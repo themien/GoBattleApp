@@ -34,7 +34,7 @@ def battle_add():
 
 @server.route("/test_query")
 def query_db():
-    battle_controller.conn.add_battle()
+    # battle_controller.conn.add_battle()
     rec = battle_controller.conn.query_battles()
     result = []
     for c in rec:
