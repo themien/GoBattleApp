@@ -21,26 +21,23 @@ def index():
     return render_template('base.html', title='Home', user=user)  
 
 
-@server.route("/battle/add", methods=['GET', 'POST'])
+@server.route("/battles/add", methods=['GET', 'POST'])
 def battle_add():
     user = {'username': 'Themien'}
     form = forms.BattleForm()
     if form.validate_on_submit():
         # Add the battle here
-        battle_controller.add_battle(form)
+        battle_controller.add_battle_to_db(form)
         return redirect('/test_query')
-    return render_template('form.html', title='Add battle', user=user, form=form)  
+    return render_template('battle_form.html', title='Add battle', user=user, form=form)  
 
 
-@server.route("/test_query")
+@server.route("/battles/view")
 def query_db():
-    # battle_controller.conn.add_battle()
-    rec = battle_controller.conn.query_battles()
-    result = []
-    for c in rec:
-        result.append(c)
+    user = {'username': 'Themien'}
+    data = battle_controller.query_battles_from_db()
+    return render_template('battles_table.html', user=user, data=data)
 
-    return flask.jsonify({"response": result})
 
 if __name__ == "__main__":
     # remove debug=True when deployed

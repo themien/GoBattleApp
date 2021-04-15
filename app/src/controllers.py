@@ -2,14 +2,15 @@
 from datetime import date, datetime, time, timedelta
 import models
 
+
 class BattleController:
 
-    # should this be here?
+    # move from here
     def __init__(self):
         self.conn = models.DBManager()
 
     
-    def add_battle(self, form):
+    def add_battle_to_db(self, form):
         battle = models.Battle(3,
                                form.season.data,
                                form.league.data,
@@ -30,10 +31,14 @@ class BattleController:
         #
         #Here validate inputs and add defaults for uncomplete form fields
         #
-        tomorrow = datetime.now().date() + timedelta(days=1)   
-        
+        tomorrow = datetime.now().date() + timedelta(days=1)         
 
         self.conn.add_battle(battle)
+
+
+    def query_battles_from_db(self):
+        data = self.conn.query_battles()
+        return data
 
         
 

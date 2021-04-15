@@ -15,7 +15,7 @@ class DBManager:
     
 
     def add_battle(self, battle):
-        
+        # Adds a battle to the DB
         add_query = ("INSERT INTO Battle"
                       "(battleId, season, league, elo, battleDate, battleTime,"
                       "myPokemon1, myPokemon2, myPokemon3, opponentName,"
@@ -45,13 +45,11 @@ class DBManager:
 
             
     def query_battles(self):
+        # Query all battle data
         self.cursor.execute('SELECT * FROM Battle')
-        rec = []
-        for c in self.cursor:
-            # for i in range(14):
-            #     rec.append(c[i])
-            rec.append(c[2])
-        return rec
+        data = self.cursor.fetchall()
+        return data
+
 
 
 
