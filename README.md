@@ -17,6 +17,6 @@ The information stored for each battle includes:
 You will need docker-compose to build the app!
 
 <code>
-docker compose build
+docker compose build</br>
 docker compose up -d
 </code>
